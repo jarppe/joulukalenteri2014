@@ -12,15 +12,17 @@
   :plugins [[lein-cljsbuild "1.0.4-SNAPSHOT"]]
   
   :source-paths ["src/clj"]
-  
+
   :profiles {:dev {:repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
                    :plugins [[lein-figwheel "0.1.4-SNAPSHOT"]]
                    :figwheel {:http-server-root "public"
-                              :port 3449}}}
+                              :port 3449}}
+             :prod {:cljsbuild {:builds {:client {:source-paths ^:replace ["src/cljs"]
+                                                  :compiler {:optimizations :advanced
+                                                             :pretty-print false}}}}}}
   
-  :cljsbuild {:builds [{:id "dev"
-                        :source-paths ["src/cljs"]
-                        :compiler {:output-to "resources/public/joulukalenteri.js"
-                                   :output-dir "resources/public/out"
-                                   :optimizations :none
-                                   :source-map true}}]})
+  :cljsbuild {:builds {:client {:source-paths ["src/cljs" "src/cljs-dev"]
+                                :compiler {:output-to "resources/public/joulukalenteri.js"
+                                           :output-dir "resources/public/out"
+                                           :optimizations :none
+                                           :pretty-print true}}}})

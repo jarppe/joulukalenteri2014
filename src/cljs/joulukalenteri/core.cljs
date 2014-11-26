@@ -1,13 +1,15 @@
 (ns joulukalenteri.core
-  (:require [dommy.core :as d :refer-macros [sel1]]
-            [figwheel.client :as fw]
-            [weasel.repl :as ws-repl]))
+  (:require [dommy.core :as d :refer-macros [sel1]]))
 
-(defn dev []
-  (fw/watch-and-reload
-    :websocket-url "ws://localhost:3449/figwheel-ws"
-    :jsload-callback (fn [] (js/console.log "Reloaded")))
-  (ws-repl/connect "ws://localhost:9001" :verbose true))
+(defonce app-state {1  {:state :disabled
+                        :x 100 :y 100
+                        :w  50 :h  50}
+                    2  {:state :disabled
+                        :x 200 :y 100
+                        :w  50 :h  50}
+                    3  {:state :disabled
+                        :x 200 :y 200
+                        :w  50 :h  50}})
 
 (defn on-click-box [n e]
   (js/console.log "Clickz!" n)
@@ -32,12 +34,7 @@
     (sel1 :#image-wrapper)
     (box x y n)))
   
-  (defn main []
-    (js/console.log "Here we go!")
-    (add-box 700 100 1)
-    (add-box 350 150 24)
-    #_(let [main-image (js/document.getElementById "image")]
-       (js/console.log "imagez" main-image))
-    (dev))
-
-(-> js/window .-onload (set! main))
+(defn run []
+  (js/console.log "run"))
+  
+(-> js/window .-onload (set! run))

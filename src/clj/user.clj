@@ -7,4 +7,4 @@
    :repl-env
    (weasel/repl-env :ip "0.0.0.0" :port 9001)))
 
-(println "Readyz")
+(println "Ready")
