@@ -39,32 +39,31 @@ h1 {
   position:     relative;
 }
 
-.box {
+.hatch {
   position:        absolute;
-  width:           200px;
-  height:          200px;
-  padding-top:     70px;
-  font-size:       60px;
-  color:           rgba(255,0,0,0.2);
-  background:      rgba(128,32,32,0.2);
-  border:          2px dotted rgba(255,0,0,0.2);
-  transition:      border-color 0.5s, color 0.5s, background 0.5s;
+  background:      none;
+  border:          none;
+  transition:      border-color 0.5s, background 0.5s;
+  overflow:        hidden;
+  cursor:          not-allowed;
 }
 
-.box:hover {
-  color:        rgba(255,0,0,1.0);
-  border-color: rgba(255,0,0,1.0);
-  background:   rgba(128,32,32,0.7);
+.active {
+  cursor:          pointer; 
+}
+
+.active:hover {
+  border-color:    rgba(255,0,0,1.0);
+  background:      rgba(128,32,32,0.7);
 }
 
 .opened, .opened:hover {
-  color:             rgba(255,0,0,0.0);
-  background:        rgba(0,0,0,0.0);
-  border:            2px dotted rgba(255,0,0,0.0);
+  background:      rgba(0,0,0,0.0);
+  border:          2px dotted rgba(255,0,0,0.0);
 }
 
 .opened:hover {
-  border-color: rgba(255,0,0,0.8);
+  border-color:   rgba(255,0,0,0.8);
 }
 
 footer {

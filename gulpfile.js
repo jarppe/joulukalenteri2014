@@ -7,7 +7,8 @@ var gulp         = require("gulp"),
     minifyHTML   = require("gulp-minify-html"),
     usemin       = require("gulp-usemin"),
     minifyCSS    = require("gulp-minify-css"),
-    webserver    = require("gulp-webserver");
+    webserver    = require("gulp-webserver"),
+    gprint       = require('gulp-print');;
 
 var src   = "resources/public/",
     dist  = "dist/";
@@ -18,8 +19,9 @@ gulp.task("clean", function(cb) {
 
 gulp.task("default", function() {
   gulp
-    .src([src])
+    .src([src, "!**/*.js"])
+    .pipe(gprint())
     .pipe(webserver({
-      livereload: true
+      livereload: false
     }));
 });
