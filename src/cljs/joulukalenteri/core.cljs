@@ -8,7 +8,7 @@
 (def opened (local-storage (atom {}) :opened))
 
 (defn hatch-count []
-  24
+  12
   #_(let [now (js/Date.)]
      (cond
        (> (.getYear now) 114)  24
