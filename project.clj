@@ -23,7 +23,7 @@
                                                              :pretty-print false}}}}}}
 
   :cljsbuild {:builds {:client {:source-paths ["src/cljs" "src/cljs-dev"]
-                                :compiler {:output-to "resources/public/joulukalenteri.js"
-                                           :output-dir "resources/public/out"
+                                :compiler {:output-to "./joulukalenteri.js"
+                                           :output-dir "out"
                                            :optimizations :none
                                            :pretty-print true}}}})

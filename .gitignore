@@ -10,7 +10,7 @@
 .classpath
 .project
 .settings
-resources/public/joulukalenteri.js
-resources/public/out
+/joulukalenteri.js
+/out
 *.log
 /node_modules

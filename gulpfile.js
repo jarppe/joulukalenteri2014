@@ -10,8 +10,7 @@ var gulp         = require("gulp"),
     webserver    = require("gulp-webserver"),
     gprint       = require('gulp-print');;
 
-var src   = "resources/public/",
-    dist  = "dist/";
+var src   = ".";
 
 gulp.task("clean", function(cb) {
   del([dist], cb);
@@ -19,7 +18,7 @@ gulp.task("clean", function(cb) {
 
 gulp.task("default", function() {
   gulp
-    .src([src, "!**/*.js"])
+    .src([src])
     .pipe(gprint())
     .pipe(webserver({
       livereload: false
