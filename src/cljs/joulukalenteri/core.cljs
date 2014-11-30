@@ -8,12 +8,11 @@
 (def opened (local-storage (atom {}) :opened))
 
 (defn hatch-count []
-  12
-  #_(let [now (js/Date.)]
-     (cond
-       (> (.getYear now) 114)  24
-       (< (.getMonth now) 11)  0
-       :else (.getDate now))))
+  (let [now (js/Date.)]
+    (cond
+      (> (.getYear now) 114)  24
+      (< (.getMonth now) 11)  0
+      :else (.getDate now))))
 
 (defn hatches []
   (map (fn [{:keys [x y x2 y2]} n can-open?]
