@@ -7,4 +7,3 @@
   (let [w (sel1 :#image-wrapper)]
     (doseq [h (sel :.hatch)]
       (.removeChild w h))))
-

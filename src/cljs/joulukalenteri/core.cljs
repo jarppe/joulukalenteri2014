@@ -1,26 +1,35 @@
 (ns joulukalenteri.core
   (:require [dommy.core :as d :refer-macros [sel sel1]]
             [alandipert.storage-atom :refer [local-storage]]
-            [joulukalenteri.hatch-pos :as pos]
-            [joulukalenteri.util :as u]))
+            [joulukalenteri.hatch-pos :as pos]))
 
-(def revealed-img "image/r.png")
+(def revealed-img "image/r.jpg")
 
 (def opened (local-storage (atom {}) :opened))
 
+(defn hatch-count []
+  24
+  #_(let [now (js/Date.)]
+     (cond
+       (> (.getYear now) 114)  24
+       (< (.getMonth now) 11)  0
+       :else (.getDate now))))
+
 (defn hatches []
-  (map (fn [pos n can-open?]
-         (assoc pos
-                :n n
-                :opened? (get @opened n false)
-                :can-open? can-open?))
+  (map (fn [{:keys [x y x2 y2]} n can-open?]
+         {:x   x
+          :y   y
+          :w   (- x2 x)
+          :h   (- y2 y)
+          :n   n
+          :opened?    (get @opened n false)
+          :can-open?  can-open?})
        pos/hatch-positions
-       (range 1 24)
-       (concat (repeat (u/hatch-count) true)
+       (range 1 25)
+       (concat (repeat (hatch-count) true)
                (repeat false))))
 
 (defn open-hatch [{:keys [n x y]} div]
-  (js/console.log "open-hatch" div)
   (let [img (js/document.createElement "img")]
     (-> img .-src              (set! revealed-img))
     (-> img .-style .-position (set! "relative"))
@@ -32,8 +41,7 @@
         (d/remove-class! "closed"))
     (swap! opened assoc n true)))
 
-(defn close-hatch [hatch div]
-  (js/console.log "close-hatch" div)
+(defn close-hatch [{:keys [n]} div]
   (-> div
       (d/clear!)
       (d/add-class! "closed")
@@ -63,7 +71,6 @@
     (d/append! (sel1 :#image-wrapper) div)))
 
 (defn run []
-  (js/console.log "run")
   (doseq [h (hatches)]
     (->hatch-div h)))
   
