@@ -10,7 +10,6 @@
 .classpath
 .project
 .settings
-/joulukalenteri.js
 /out
 *.log
 /node_modules
