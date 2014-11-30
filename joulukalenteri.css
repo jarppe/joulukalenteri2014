@@ -19,7 +19,7 @@ body {
 }
 
 #content {
-  width:       1000px;
+  width:       1024px;
   margin:      auto auto;
   background:  none;
 }
@@ -42,7 +42,7 @@ h1 {
 .hatch {
   position:        absolute;
   background:      none;
-  border:          none;
+  border:          1px solid rgba(255,0,0,1.0);
   transition:      border-color 0.5s, background 0.5s;
   overflow:        hidden;
   cursor:          not-allowed;
