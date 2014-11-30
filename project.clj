@@ -5,20 +5,13 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/clojurescript "0.0-2342"]
                  [prismatic/dommy "1.0.0"]
-                 [alandipert/storage-atom "1.2.3"]
-                 [figwheel "0.1.4-SNAPSHOT"]
-                 [com.cemerick/piggieback "0.1.3"]
-                 [weasel "0.4.2-SNAPSHOT"]]
+                 [alandipert/storage-atom "1.2.3"]]
   
   :plugins [[lein-cljsbuild "1.0.4-SNAPSHOT"]]
   
   :source-paths ["src/clj"]
 
-  :profiles {:dev {:repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
-                   :plugins [[lein-figwheel "0.1.4-SNAPSHOT"]]
-                   :figwheel {:http-server-root "public"
-                              :port 3449}}
-             :prod {:cljsbuild {:builds {:client {:source-paths ^:replace ["src/cljs"]
+  :profiles {:prod {:cljsbuild {:builds {:client {:source-paths ^:replace ["src/cljs"]
                                                   :compiler {:optimizations :advanced
                                                              :pretty-print false}}}}}}
 
